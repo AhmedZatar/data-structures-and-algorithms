@@ -303,7 +303,30 @@ const meetings = [
 ];
 
 const sortMeetingsByDay = (arr) => {
-  // Solution code here...
+  arr.forEach((item)=>{
+    if(item.dayOfWeek==='Monday'){
+      item.index=0;
+    }else if(item.dayOfWeek==='Tuesday'){
+      item.index=1;
+    }else if(item.dayOfWeek==='Wednesday'){
+      item.index=2;
+    }else if(item.dayOfWeek==='Friday'){
+      item.index=3;
+    }
+  });
+  arr.sort((a,b)=>{
+    if (a.index<b.index) {
+      return -1;
+    } else if (a.index>b.index) {
+      return 1;
+    }else{
+      return 0;}
+  });
+
+  arr.forEach((item)=>{
+    delete item.index;
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -452,7 +475,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should sort meetings by the day on which they happen', () => {
     const sortedMeetings = sortMeetingsByDay(meetings);
     expect(sortedMeetings.slice(0,2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
