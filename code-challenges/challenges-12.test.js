@@ -115,7 +115,7 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 ------------------------------------------------------------------------------------------------ */
 
 const validateEmail = (email) => {
-  let regex = /\w+@+\w+(.net$|.org$|.com$)/g;
+  let regex = /^\w+(\.)?\w+(@)\w+(.net|.com|.org)\b/g;
 
   return regex.test(email);
 };
